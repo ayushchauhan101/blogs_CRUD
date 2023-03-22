@@ -1,0 +1,9 @@
+POST http://localhost:8000/api/blogs
+Content-Type: application/json
+
+{
+  "title": "sending request from a .rest file",
+  "author": "ayush",
+  "url": "https://fullstackopen.com/en/part3/node_js_and_express#the-visual-studio-code-rest-client",
+  "likes": 9024
+}

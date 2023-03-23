@@ -60,17 +60,8 @@ const blogs = [
 }  
 ]
 
+// use toBe when comparing only the values
 describe('total likes', () => {
-    const listWithOneBlog = [
-            {
-                _id: "641ab2c4e113283d1aa07524",
-                title: 'sending request from a .rest file',
-                author: 'ayush',
-                url: 'https://fullstackopen.com/en/part3/node_js_and_express#the-visual-studio-code-rest-client',
-                likes: 9024,
-                __v: 0
-        }
-    ]
 
     test('when list has only one blog, equals the likes of that', () => {
         // const result = listHelper.totalLikes(listWithOneBlog)
@@ -80,3 +71,12 @@ describe('total likes', () => {
     })
 })
 
+// use toEqual when comparing objects and their properties
+describe('most likes', () => {
+
+    test('when array of blogs, equals the blog with most likes', () => {
+        const result = listHelper.favoriteBlog(blogs)
+
+        expect(result).toEqual(12)
+    })
+})

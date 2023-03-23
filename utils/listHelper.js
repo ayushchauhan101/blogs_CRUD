@@ -16,4 +16,11 @@ function totalLikes(arr){
     return likes_sum
 }
 
-module.exports = {dummy, totalLikes}
+function favoriteBlog(arr){
+
+    all_likes = arr.map(blog => blog.likes)
+
+    return Math.max(...all_likes)
+}
+
+module.exports = {dummy, totalLikes, favoriteBlog}

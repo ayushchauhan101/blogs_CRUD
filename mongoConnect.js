@@ -1,14 +1,5 @@
 const mongoose = require('mongoose')
 
-const blogSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    url: String,
-    likes: Number,
-})
-
-const Blog = mongoose.model('Blog', blogSchema)
-
 const mongoURL = 'mongodb://127.0.0.1/bloglist'
 
 async function main(){
@@ -24,4 +15,4 @@ async function main(){
 }
 main()
 
-module.exports = Blog
+module.exports = main

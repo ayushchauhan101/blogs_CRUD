@@ -1,0 +1,15 @@
+bcrypt example
+---------------------
+bcrypt.genSalt(saltRounds)
+    .then(salt => {
+        bcrypt.hash(password, salt)
+            .then(hash => {
+                const passwordHash = hash
+            })
+    })
+
+------------------------
+let salt = await bcrypt.genSalt(saltRounds)
+let passwordHash = await bcrypt.hash(password, salt)
+
+------------------------

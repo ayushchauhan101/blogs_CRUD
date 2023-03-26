@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-require('../mongoConnect')
+// require('../mongoConnect')
 
 const userSchema = mongoose.Schema({
     username: {
@@ -18,9 +18,6 @@ const userSchema = mongoose.Schema({
     ],
 })
 
-
-const User = mongoose.model('User', userSchema)
-
 userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
@@ -31,5 +28,6 @@ userSchema.set('toJSON', {
     }
 })
 
+const User = mongoose.model('User', userSchema)
 
 module.exports = User

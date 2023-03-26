@@ -16,8 +16,8 @@ blogsRouter.post('/', (req, res) => {
     
     new_blog.save()
         .then(result => {
-            res.status(201).json(result)
-            // res.redirect(303, '/api/blogs')
+            // res.status(201).json(result)
+            res.redirect(303, '/api/blogs')
         })
 })
 

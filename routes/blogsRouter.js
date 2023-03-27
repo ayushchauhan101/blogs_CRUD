@@ -12,16 +12,6 @@ blogsRouter.get('/', (req, res) => {
         })
 })
 
-// blogsRouter.post('/', (req, res) => {
-//     let new_blog = new Blog(req.body)
-    
-//     new_blog.save()
-//         .then(result => {
-//             // res.status(201).json(result)
-//             res.redirect(303, '/api/blogs')
-//         })
-// })
-
 blogsRouter.post('/', async(req, res) => {
     const body = req.body
 
@@ -34,12 +24,12 @@ blogsRouter.post('/', async(req, res) => {
         likes: body.likes
     })
 
-    const savedBlog = await blog.save()
+    const newBlog = await blog.save()
 
-    user.blogs = user.blogs.concat(savedBlog._id)
+    user.blogs = user.blogs.concat(newBlog._id)
     await user.save()
 
-    res.json(savedBlog)
+    res.json(newBlog)
 })
 
 blogsRouter.get('/:id', (req, res) => {

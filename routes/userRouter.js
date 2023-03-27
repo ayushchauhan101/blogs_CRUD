@@ -12,17 +12,14 @@ userRouter.get('/', (req, res) => {
 
 userRouter.post('/', async (req, res) => {
 
-    // take three data from users
-    const {username, name, password} = req.body
+    const {user, password} = req.body
 
-    // store the password hash instead of the password 
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(password, saltRounds)
     
     const new_user = new User({
-        username,
-        name, 
-        passwordHash,
+        user, 
+        passwordHash
     })
 
     const savedUser = await new_user.save()

@@ -12,13 +12,21 @@ userRouter.get('/', (req, res) => {
 
 userRouter.post('/', async (req, res) => {
 
+<<<<<<< HEAD
+=======
+    // take three data from users
+>>>>>>> detached-branch
     const {user, password} = req.body
 
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(password, saltRounds)
     
     const new_user = new User({
+<<<<<<< HEAD
         user, 
+=======
+        user,
+>>>>>>> detached-branch
         passwordHash
     })
 

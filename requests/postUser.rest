@@ -1,7 +1,15 @@
 POST http://localhost:8000/api/users/
+<<<<<<< HEAD
 Content-Type: application/json
 
 {
     "name": "ayush",
     "password": "samplePassword"
+=======
+Content-Type: application/json 
+
+{
+    "user": "ayush",
+    "password": "thisIsPassword"
+>>>>>>> detached-branch
 }

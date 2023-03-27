@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
         unique: true
     },
     passwordHash: String,
+    // refer to blogSchema and Blog collection 
     blogs: [
         {
         type: mongoose.Schema.Types.ObjectId,

@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 // require('../mongoConnect')
 
 const userSchema = mongoose.Schema({
-    username: {
+    user: {
         type: String,
         required: true,
         unique: true
     },
-    name: String,
     passwordHash: String,
+    // refer to blogSchema and Blog collection 
     blogs: [
         {
         type: mongoose.Schema.Types.ObjectId,

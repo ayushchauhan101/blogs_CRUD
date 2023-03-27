@@ -12,16 +12,6 @@ blogsRouter.get('/', (req, res) => {
         })
 })
 
-// blogsRouter.post('/', (req, res) => {
-//     let new_blog = new Blog(req.body)
-    
-//     new_blog.save()
-//         .then(result => {
-//             // res.status(201).json(result)
-//             res.redirect(303, '/api/blogs')
-//         })
-// })
-
 blogsRouter.post('/', async(req, res) => {
     const body = req.body
 

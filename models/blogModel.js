@@ -1,15 +1,14 @@
 const mongoose = require('mongoose')
 
-require('../mongoConnect')
-
 const blogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
     },
+    // refer to only one user
     user: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     url: String,
     likes: Number,

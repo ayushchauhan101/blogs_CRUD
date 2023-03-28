@@ -14,22 +14,26 @@ blogsRouter.get('/', (req, res) => {
 
 blogsRouter.post('/', async(req, res) => {
     const body = req.body
-    console.log(body)
-    // const user = await User.findById(body.userId)
+    const user = await User.findById(body.userId)
 
-    const new_blog = new Blog ({
+    const blog = new Blog({
         title: body.title,
-        user: body.user,
         url: body.url,
-        likes: body.likes
+        likes: body.likes,
+
+        // this will contain the id of the user
+        user: user.id
+
+        // a new note id will be generated as well  
     })
 
-    const newBlog = await new_blog.save()
+    const savedBlog = await blog.save()
 
-    // user.blogs = user.blogs.concat(newBlog._id)
-    // await user.save()
+    // concat newly created blog to current blogs array
+    user.blogs = user.blogs.concat(savedBlog._id)
+    await user.save()
 
-    res.status(200).json(newBlog)
+    res.status(200).json(savedBlog)
 })
 
 blogsRouter.get('/:id', (req, res) => {

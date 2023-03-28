@@ -11,7 +11,7 @@ app.use(express.json())
 // all the routes with the following url sent to separate location
 app.use('/api/blogs', require('./routes/blogsRouter'))
 app.use('/api/users', require('./routes/userRouter'))
-
+app.use('/api/login', require('./routes/loginRouter'))
 
 const PORT = 8000
 app.listen(PORT, () =>`Server running on port ${PORT}`)

@@ -14,22 +14,22 @@ blogsRouter.get('/', (req, res) => {
 
 blogsRouter.post('/', async(req, res) => {
     const body = req.body
+    console.log(body)
+    // const user = await User.findById(body.userId)
 
-    const user = await User.findById(body.userId)
-
-    const blog = new Blog({
+    const new_blog = new Blog ({
         title: body.title,
-        user: user.id,
+        user: body.user,
         url: body.url,
         likes: body.likes
     })
 
-    const newBlog = await blog.save()
+    const newBlog = await new_blog.save()
 
-    user.blogs = user.blogs.concat(newBlog._id)
-    await user.save()
+    // user.blogs = user.blogs.concat(newBlog._id)
+    // await user.save()
 
-    res.json(newBlog)
+    res.status(200).json(newBlog)
 })
 
 blogsRouter.get('/:id', (req, res) => {

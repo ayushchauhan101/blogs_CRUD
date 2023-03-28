@@ -12,28 +12,27 @@ userRouter.get('/', (req, res) => {
 
 userRouter.post('/', async (req, res) => {
 
-<<<<<<< HEAD
-=======
-    // take three data from users
->>>>>>> detached-branch
     const {user, password} = req.body
 
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(password, saltRounds)
     
     const new_user = new User({
-<<<<<<< HEAD
         user, 
-=======
-        user,
->>>>>>> detached-branch
         passwordHash
     })
 
-    const savedUser = await new_user.save()
+    try{
+        const savedUser = await new_user.save()
+        res.status(200).json(savedUser)
+    }catch(err){
+        if(err.name === 'MongoError' || err.code === 11000){
+            res.status(400).json({error: 'this user already exist!'})
+        }else{
+            res.status(400).end()
+        }
+    }
 
-    res.status(200).json(savedUser)
-    // res.status(200).redirect('/api/users')
 })
 
 userRouter.get('/:id', (req, res) => {

@@ -5,7 +5,8 @@ const userRouter = express.Router()
 const User = require('../models/userModel')
 
 userRouter.get('/', (req, res) => {
-    User.find().then(users => {
+    User.find({}).populate('blogs', {title: 1, url: 1, likes: 1})
+    .then(users => {
         res.json(users)
     })
 })

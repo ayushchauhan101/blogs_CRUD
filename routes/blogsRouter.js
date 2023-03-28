@@ -6,7 +6,7 @@ const User = require('../models/userModel')
 
 // blogsRouter replaces app.get('/api/blogs')
 blogsRouter.get('/', (req, res) => {
-    Blog.find({})
+    Blog.find({}).populate('user', {user: 1})
         .then(blogs => {
             res.json(blogs)
         })

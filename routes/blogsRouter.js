@@ -27,13 +27,18 @@ blogsRouter.get('/', (req, res) => {
 blogsRouter.post('/', async(req, res) => {
     const body = req.body
 
-    // this will contain the sent data by the user if jwt is correct
+    // contains sent data if verified or returns error
     const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
-    console.log(decodedToken)
+    
     // missing token or invalid token error handler
     if (!decodedToken.id){
         res.status(401).json({error: 'token invalid'})
     }
+
+    //error handler for expired or timed out token 
+    // else if(decodedToken.name === 'TokenExpiredError'){
+    //     res.status(401).json({error: 'token expired'})
+    // }
 
     // search for user document once authorized and token verified
     const user = await User.findById(decodedToken.id)
@@ -72,6 +77,25 @@ blogsRouter.delete('/:id', (req, res) => {
     .catch(err => {
         console.log(err)
     })
+})
+
+blogsRouter.put('/:id', (req, res) => {
+    const body = req.body
+
+    // can update anything other than user id
+    const blog = new Blog({
+        title: body.title,
+        url: body.url,
+        likes: body.likes
+    })
+
+    Blog.findByIdAndUpdate(req.params.id, blog, {new: true})
+        .then(updatedBlog => {
+            res.json(updatedBlog)
+        })
+        .catch(error => {
+            res.json({error})
+        })
 })
 
 module.exports = blogsRouter

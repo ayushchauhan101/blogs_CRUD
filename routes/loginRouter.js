@@ -6,7 +6,6 @@ const User = require('../models/userModel')
 const bcrypt = require('bcrypt')
 
 loginRouter.post('/', async (req, res) => {
-
     // received data from user
     const {username, password} = req.body
 
@@ -18,7 +17,7 @@ loginRouter.post('/', async (req, res) => {
     const passwordCorrect = (user === null) ? false : await bcrypt.compare(password, user.passwordHash)
 
     // if no user is found or password compare returns false
-    if (! (user && passwordCorrect)){
+    if (!(user && passwordCorrect)){
         res.status(401).json({
             error: 'invalid username or password'
         })
@@ -30,8 +29,8 @@ loginRouter.post('/', async (req, res) => {
         id: user._id
     }
 
-    // create a new token using new variable and a secret hidden key
-    const token = jwt.sign(userForToken, process.env.SECRET)
+    // create a new token using new variable, secret hidden key and expiry time in ms
+    const token = jwt.sign(userForToken, process.env.SECRET, {expiresIn: 60*60})
 
     // responding with the generated token and username i.e. user value from user instance
     res.status(200).json({token, username: user.user})
